@@ -6,10 +6,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using SpaUserControl.Api.Attributes;
 
 namespace SpaUserControl.Api.Controllers
 {
-    [RoutePrefix("api/account")]
+    [RoutePrefix("api/v1/account")]
     public class AccountController : ApiController
     {
         private IUserService _service;
@@ -22,6 +23,7 @@ namespace SpaUserControl.Api.Controllers
         // api/account
         [Route("")]
         [HttpPost]
+        [DeflateCompression]
         public Task<HttpResponseMessage> Register(RegisterUserModel model)
         {
             HttpResponseMessage response = new HttpResponseMessage();
@@ -45,6 +47,7 @@ namespace SpaUserControl.Api.Controllers
         // api/account
         [Authorize]
         [HttpPut]
+        [DeflateCompression]
         [Route("")]
         public Task<HttpResponseMessage> Put(ChangeInformationModel model)
         {
@@ -68,6 +71,7 @@ namespace SpaUserControl.Api.Controllers
         // api/account/changepassword
         [Authorize]
         [HttpPost]
+        [DeflateCompression]
         [Route("changepassword")]
         public Task<HttpResponseMessage> ChangePassword(ChangePasswordModel model)
         {
@@ -89,6 +93,7 @@ namespace SpaUserControl.Api.Controllers
         }
 
         [HttpPost]
+        [DeflateCompression]
         [Route("resetpassword")]
         public Task<HttpResponseMessage> ResetPassword(ResetPasswordModel model)
         {
