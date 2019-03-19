@@ -57,7 +57,7 @@ namespace SpaUserControl.Business.Services
 
         public void Register(string name, string email, string password, string confirmPassword)
         {
-            var hasUser = GetByEmail(email);
+            var hasUser = _repository.Get(email);
             if (hasUser != null)
                 throw new Exception(Errors.DuplicateEmail);
 
